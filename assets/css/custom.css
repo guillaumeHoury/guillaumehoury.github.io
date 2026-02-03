@@ -148,51 +148,43 @@ button[aria-label*="theme"] {
 }
 
 /* ========================================================================== */
-/* BRUTE FORCE NAV FIX: Black Text + Persistent Underline                     */
+/* BRUTE FORCE NAV FIX: Double-Tap Dark Mode Override                         */
 /* ========================================================================== */
 
-@media screen, (prefers-color-scheme: dark), (prefers-color-scheme: light) {
-  
-  /* 1. GENERAL LINKS: Force all nav links to black */
-  .greedy-nav a,
-  .greedy-nav li a,
-  .greedy-nav .visible-links a,
-  .greedy-nav .visible-links li a {
-      color: #000000 !important;
-      -webkit-text-fill-color: #000000 !important;
-      opacity: 1 !important;
-  }
+/* 1. GLOBAL RULE (Works for Light Mode) */
+.greedy-nav .masthead__menu-item--active a, 
+.greedy-nav li.masthead__menu-item--active > a,
+.greedy-nav .active a,
+.greedy-nav li.active > a,
+.greedy-nav a.active {
+    color: #000000 !important;
+    background: transparent !important;
+    border-bottom: 2px solid #000000 !important; /* Force black border */
+    text-decoration: none !important;
+    padding-bottom: 3px !important;
+    display: inline-block !important; /* Required for border to show */
+}
 
-  /* 2. HOVER STATE: Light gray background */
-  .greedy-nav a:hover,
-  .greedy-nav li a:hover,
-  .greedy-nav .masthead__menu-item--active a:hover {
-      background-color: #f2f2f2 !important;
-      color: #000000 !important;
-  }
+/* 2. DARK MODE SPECIFIC OVERRIDE (The Fix) */
+/* We repeat the exact same rule here. The browser prioritizes this block 
+   when in Private/Dark mode, stopping the theme from resetting the color. */
+@media (prefers-color-scheme: dark) {
+    .greedy-nav .masthead__menu-item--active a, 
+    .greedy-nav li.masthead__menu-item--active > a,
+    .greedy-nav .active a,
+    .greedy-nav li.active > a,
+    .greedy-nav a.active {
+        color: #000000 !important;
+        -webkit-text-fill-color: #000000 !important;
+        border-bottom: 2px solid #000000 !important; /* RE-FORCE BLACK HERE */
+        background: transparent !important;
+    }
+}
 
-  /* 3. ACTIVE STATE: Black Text + Black Underline */
-  /* We target both newer and older class names for safety */
-  .greedy-nav .masthead__menu-item--active a, 
-  .greedy-nav li.masthead__menu-item--active > a,
-  .greedy-nav .active a,
-  .greedy-nav li.active > a,
-  .greedy-nav a.active {
-      color: #000000 !important;
-      background: transparent !important;
-      
-      /* THE UNDERLINE FIX */
-      /* We explicitly set the color to #000000 to fight Dark Mode resets */
-      border-bottom: 2px solid #000000 !important;
-      
-      /* Essential for the border to show up correctly on text links */
-      display: inline-block !important; 
-      line-height: 1.5 !important;
-      
-      /* Removes standard text underline so we only see our custom border */
-      text-decoration: none !important; 
-      
-      /* Adds space between text and line */
-      padding-bottom: 3px !important; 
-  }
+/* 3. ENSURE HOVER REMAINS CONSISTENT */
+.greedy-nav a:hover,
+.greedy-nav li a:hover,
+.greedy-nav .masthead__menu-item--active a:hover {
+    background-color: #f2f2f2 !important;
+    color: #000000 !important;
 }

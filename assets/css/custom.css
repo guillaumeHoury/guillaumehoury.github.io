@@ -77,3 +77,47 @@ html, body {
   background-image: none;
   box-shadow: none;
 }
+
+/* ===================================================== */
+/* Fix black rectangles behind navbar text (academicpages) */
+/* ===================================================== */
+
+/* Always force light navbar */
+.masthead,
+.masthead__inner-wrap,
+.greedy-nav {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* Kill dark backgrounds applied to nav items */
+.greedy-nav li,
+.greedy-nav a,
+.greedy-nav a:link,
+.greedy-nav a:visited,
+.greedy-nav a span {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* On hover: light gray only */
+.greedy-nav a:hover,
+.greedy-nav a:focus {
+  background-color: #f2f2f2 !important;
+}
+
+/* Mobile menu */
+.greedy-nav__toggle,
+.greedy-nav__toggle span {
+  background-color: transparent !important;
+}
+
+/* Remove pseudo-element blocks */
+.greedy-nav li::before,
+.greedy-nav li::after,
+.greedy-nav a::before,
+.greedy-nav a::after {
+  content: none !important;
+  display: none !important;
+}

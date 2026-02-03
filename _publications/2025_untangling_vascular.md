@@ -1,5 +1,5 @@
 ---
-title: "Untangling Vascular Trees for Surgery and Interventional Radiology
+title: "Untangling Vascular Trees for Surgery and Interventional Radiology"
 collection: publications
 category: conferences
 date: 2025-09-21

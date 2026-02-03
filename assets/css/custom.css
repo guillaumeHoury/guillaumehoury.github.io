@@ -129,3 +129,20 @@ button[aria-label*="dark"],
 button[aria-label*="theme"] {
   display: none !important;
 }
+
+/* ===================================================== */
+/* Fix "Current Page" (Active) Link Color                */
+/* ===================================================== */
+
+/* Target the specific active class used by academicpages */
+.greedy-nav .visible-links .masthead__menu-item--active a {
+    color: #000000 !important;
+    /* Optional: Add bolding to indicate it is the current page */
+    font-weight: bold !important; 
+}
+
+/* Ensure the hover state on the active link is also visible */
+.greedy-nav .visible-links .masthead__menu-item--active a:hover {
+    color: #000000 !important;
+    background-color: #f2f2f2 !important;
+}

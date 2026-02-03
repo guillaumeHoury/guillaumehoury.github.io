@@ -7,4 +7,3 @@ venue: 'ISSAC'
 authors: 'B. Giunti, G. Houry, M. Kerber'
 paperurl: 'https://academicpages.github.io/files/2022_Average_Complexity_of_Matrix_Reduction_for_Clique_Filtrations.pdf'  
 ---
-=

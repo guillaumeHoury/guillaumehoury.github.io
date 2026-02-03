@@ -188,3 +188,23 @@ button[aria-label*="theme"] {
       background-color: #f2f2f2 !important; /* Light gray background on hover */
   }
 }
+
+/* ===================================================== */
+/* Add Underline to Current Page Link                    */
+/* ===================================================== */
+
+@media screen, (prefers-color-scheme: dark), (prefers-color-scheme: light) {
+  
+  .greedy-nav .masthead__menu-item--active a,
+  .greedy-nav li.active > a {
+      /* Creates the line */
+      border-bottom: 2px solid #000000 !important;
+      
+      /* Adds a tiny gap between the text and the line */
+      padding-bottom: 3px !important; 
+      
+      /* Ensures the line renders correctly */
+      display: inline-block !important; 
+      text-decoration: none !important;
+  }
+}

@@ -148,48 +148,36 @@ button[aria-label*="theme"] {
 }
 
 /* ========================================================================== */
-/* FINAL FIX: Active Link Black Text + Underline (Pseudo-Element Method)      */
+/* FINAL ATTEMPT: Active Link Underline (Background Paint Method)             */
 /* ========================================================================== */
 
 @media screen, (prefers-color-scheme: dark), (prefers-color-scheme: light) {
 
-  /* 1. RESET: Force all links to black & ensure positioning allows the line */
-  .greedy-nav .visible-links a,
-  .greedy-nav .visible-links li a {
+  /* 1. Force the active link text to be Black */
+  .greedy-nav .masthead__menu-item--active a,
+  .greedy-nav li.masthead__menu-item--active > a,
+  .greedy-nav .active a {
       color: #000000 !important;
       -webkit-text-fill-color: #000000 !important;
-      position: relative !important; /* Critical anchor for the line */
+      background-color: transparent !important;
+      
+      /* 2. THE PAINTED LINE */
+      /* This creates a 2px high black stripe at the bottom */
+      background-image: linear-gradient(to bottom, #000000, #000000) !important;
+      background-position: bottom center !important;
+      background-size: 80% 2px !important; /* 80% width (so it doesn't touch edges), 2px height */
+      background-repeat: no-repeat !important;
+      
+      /* 3. Spacing */
+      /* Push the text up slightly so it doesn't sit on the line */
+      padding-bottom: 5px !important;
   }
-
-  /* 2. HOVER: Light gray background */
-  .greedy-nav a:hover,
-  .greedy-nav li a:hover {
+  
+  /* Ensure hover still works (removes the line on hover if you prefer, or keeps it) */
+  .greedy-nav .masthead__menu-item--active a:hover,
+  .greedy-nav li.masthead__menu-item--active > a:hover {
       background-color: #f2f2f2 !important;
-      color: #000000 !important;
-  }
-
-  /* 3. ACTIVE LINK: Target both New and Old template classes */
-  .greedy-nav .masthead__menu-item--active a, 
-  .greedy-nav li.masthead__menu-item--active > a,
-  .greedy-nav .active a,
-  .greedy-nav li.active > a {
-      color: #000000 !important;
-      background: transparent !important;
-  }
-
-  /* 4. THE UNDERLINE (Overriding your previous "content: none") */
-  .greedy-nav .masthead__menu-item--active a::after,
-  .greedy-nav li.masthead__menu-item--active > a::after,
-  .greedy-nav .active a::after,
-  .greedy-nav li.active > a::after {
-      content: "" !important; /* Force the element to exist */
-      display: block !important;
-      position: absolute !important;
-      left: 0 !important;
-      bottom: 0 !important; /* Places line at the very bottom edge */
-      width: 100% !important; /* Full width of the word */
-      height: 2px !important; /* Thickness of the line */
-      background-color: #000000 !important; /* Color of the line */
-      opacity: 1 !important;
+      /* Keep the line black on hover */
+      background-image: linear-gradient(to bottom, #000000, #000000) !important; 
   }
 }

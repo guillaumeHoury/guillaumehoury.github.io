@@ -148,43 +148,39 @@ button[aria-label*="theme"] {
 }
 
 /* ========================================================================== */
-/* BRUTE FORCE NAV FIX: Double-Tap Dark Mode Override                         */
+/* FINAL FIX: Active Link Underline using Box-Shadow (Bypasses Border Conflicts) */
 /* ========================================================================== */
 
-/* 1. GLOBAL RULE (Works for Light Mode) */
-.greedy-nav .masthead__menu-item--active a, 
-.greedy-nav li.masthead__menu-item--active > a,
-.greedy-nav .active a,
-.greedy-nav li.active > a,
-.greedy-nav a.active {
+/* Use 'html body' to artificially boost priority above everything else */
+html body .greedy-nav .masthead__menu-item--active a,
+html body .greedy-nav .active a,
+html body .greedy-nav li.masthead__menu-item--active > a,
+html body .greedy-nav li.active > a {
+    
+    /* 1. Force Text Color Black */
     color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    
+    /* 2. Force Background Transparent (removes any dark mode gray/white blocks) */
     background: transparent !important;
-    border-bottom: 2px solid #000000 !important; /* Force black border */
+    background-color: transparent !important;
+
+    /* 3. THE UNDERLINE FIX (Box Shadow) */
+    /* Instead of a border, we draw a 2px shadow inside the bottom edge. */
+    /* This overrides 'border-color' issues completely. */
+    box-shadow: inset 0 -2px 0 0 #000000 !important;
+    
+    /* 4. Formatting */
     text-decoration: none !important;
-    padding-bottom: 3px !important;
-    display: inline-block !important; /* Required for border to show */
+    display: inline-block !important; /* Ensures the shadow has a box to sit in */
+    padding-bottom: 5px !important;   /* Space between text and line */
+    border: none !important;          /* Remove the conflicting border entirely */
 }
 
-/* 2. DARK MODE SPECIFIC OVERRIDE (The Fix) */
-/* We repeat the exact same rule here. The browser prioritizes this block 
-   when in Private/Dark mode, stopping the theme from resetting the color. */
-@media (prefers-color-scheme: dark) {
-    .greedy-nav .masthead__menu-item--active a, 
-    .greedy-nav li.masthead__menu-item--active > a,
-    .greedy-nav .active a,
-    .greedy-nav li.active > a,
-    .greedy-nav a.active {
-        color: #000000 !important;
-        -webkit-text-fill-color: #000000 !important;
-        border-bottom: 2px solid #000000 !important; /* RE-FORCE BLACK HERE */
-        background: transparent !important;
-    }
-}
-
-/* 3. ENSURE HOVER REMAINS CONSISTENT */
-.greedy-nav a:hover,
-.greedy-nav li a:hover,
-.greedy-nav .masthead__menu-item--active a:hover {
+/* Ensure the Hover state doesn't break it */
+html body .greedy-nav .masthead__menu-item--active a:hover,
+html body .greedy-nav li.masthead__menu-item--active > a:hover {
     background-color: #f2f2f2 !important;
     color: #000000 !important;
+    box-shadow: inset 0 -2px 0 0 #000000 !important; /* Keep line on hover */
 }

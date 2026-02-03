@@ -1,0 +1,29 @@
+/* ============================= */
+/* Disable dark mode completely  */
+/* ============================= */
+
+/* Default light colors */
+html, body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Override academicpages dark mode */
+@media (prefers-color-scheme: dark) {
+  body,
+  body *,
+  .page__content,
+  .archive,
+  .sidebar,
+  .masthead,
+  .greedy-nav,
+  .page__footer {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #cccccc;
+  }
+
+  a {
+    color: #0645ad;
+  }
+}

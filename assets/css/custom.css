@@ -148,43 +148,51 @@ button[aria-label*="theme"] {
 }
 
 /* ========================================================================== */
-/* BRUTE FORCE NAV FIX: Force ALL Nav Links to Black (No Exceptions)          */
+/* BRUTE FORCE NAV FIX: Black Text + Persistent Underline                     */
 /* ========================================================================== */
 
-/* We wrap this in a media query to ensure it hits the Dark Mode preference hard */
 @media screen, (prefers-color-scheme: dark), (prefers-color-scheme: light) {
   
-  /* 1. Target every single link inside the navigation bar generally */
+  /* 1. GENERAL LINKS: Force all nav links to black */
   .greedy-nav a,
   .greedy-nav li a,
   .greedy-nav .visible-links a,
   .greedy-nav .visible-links li a {
       color: #000000 !important;
-      -webkit-text-fill-color: #000000 !important; /* Forces color in Chrome/Safari */
-      opacity: 1 !important; /* Prevents dimming */
+      -webkit-text-fill-color: #000000 !important;
+      opacity: 1 !important;
   }
 
-  /* 2. Target the specific "Active" classes used by different template versions */
-  /* Version A (Newer) */
-  .greedy-nav .masthead__menu-item--active a, 
-  .greedy-nav li.masthead__menu-item--active > a {
+  /* 2. HOVER STATE: Light gray background */
+  .greedy-nav a:hover,
+  .greedy-nav li a:hover,
+  .greedy-nav .masthead__menu-item--active a:hover {
+      background-color: #f2f2f2 !important;
       color: #000000 !important;
-      background: transparent !important;
   }
 
-  /* Version B (Older) */
+  /* 3. ACTIVE STATE: Black Text + Black Underline */
+  /* We target both newer and older class names for safety */
+  .greedy-nav .masthead__menu-item--active a, 
+  .greedy-nav li.masthead__menu-item--active > a,
   .greedy-nav .active a,
   .greedy-nav li.active > a,
   .greedy-nav a.active {
       color: #000000 !important;
       background: transparent !important;
-  }
-
-  /* 3. Force Hover State to remain Black */
-  .greedy-nav a:hover,
-  .greedy-nav li a:hover,
-  .greedy-nav .masthead__menu-item--active a:hover {
-      color: #000000 !important;
-      background-color: #f2f2f2 !important; /* Light gray background on hover */
+      
+      /* THE UNDERLINE FIX */
+      /* We explicitly set the color to #000000 to fight Dark Mode resets */
+      border-bottom: 2px solid #000000 !important;
+      
+      /* Essential for the border to show up correctly on text links */
+      display: inline-block !important; 
+      line-height: 1.5 !important;
+      
+      /* Removes standard text underline so we only see our custom border */
+      text-decoration: none !important; 
+      
+      /* Adds space between text and line */
+      padding-bottom: 3px !important; 
   }
 }

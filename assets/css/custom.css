@@ -121,3 +121,11 @@ html, body {
   content: none !important;
   display: none !important;
 }
+
+/* Kill dark-mode toggle everywhere */
+.dark-mode-toggle,
+.theme-toggle,
+button[aria-label*="dark"],
+button[aria-label*="theme"] {
+  display: none !important;
+}

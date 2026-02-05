@@ -94,7 +94,7 @@ atom_feed:
 
 
 # SEO Related
-google_site_verification :
+google_site_verification : googlea562ba5df15ff2ba.html
 bing_site_verification   :
 alexa_site_verification  :
 yandex_site_verification :
@@ -247,7 +247,7 @@ plugins:
   #- jekyll-feed
   - jekyll-gist
   - jekyll-paginate
-  #- jekyll-sitemap
+  - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
 
@@ -256,7 +256,7 @@ whitelist:
   #- jekyll-feed
   - jekyll-gist
   - jekyll-paginate
-  #- jekyll-sitemap
+  - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
 
